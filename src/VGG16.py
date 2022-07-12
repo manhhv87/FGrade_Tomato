@@ -52,7 +52,13 @@ x = Flatten()(vgg.output)
 full_layer = Dense(n_classes, activation='softmax')(x)
 model = Model(inputs=vgg.input, outputs=full_layer)
 
-model.summary()
+# model.summary()
 
-model.compile(loss='sparse_categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
-model.fit(x_train, y_train, epochs=100, batch_size=32, validation_data=(x_test,y_test))
+model.compile(loss='sparse_categorical_crossentropy', 
+              optimizer='adam', 
+              metrics=['accuracy'])
+
+model.fit(x_train, y_train, 
+          validation_data=(x_test,y_test),
+          epochs=100,
+          batch_size=32)
